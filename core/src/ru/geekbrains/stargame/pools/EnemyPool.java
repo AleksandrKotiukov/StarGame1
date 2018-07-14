@@ -1,5 +1,8 @@
 package ru.geekbrains.stargame.pools;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import ru.geekbrains.stargame.base.Sprite;
 import ru.geekbrains.stargame.base.SpritesPool;
 import ru.geekbrains.stargame.math.Rect;
 import ru.geekbrains.stargame.sprite.Enemy;

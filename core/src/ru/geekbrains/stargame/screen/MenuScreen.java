@@ -2,6 +2,7 @@ package ru.geekbrains.stargame.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -39,6 +40,8 @@ public class MenuScreen extends Base2DScreen implements ActionListener {
     private ButtonExit buttonExit;
     private ButtonPlay buttonPlay;
 
+    private Music music;
+
 
     public MenuScreen(Game game) {
         super(game);
@@ -59,6 +62,8 @@ public class MenuScreen extends Base2DScreen implements ActionListener {
         buttonExit.setHeightProportion(BUTTON_HEIGHT);
         buttonPlay = new ButtonPlay(atlas, this, PRESS_SCALE);
         buttonPlay.setHeightProportion(BUTTON_HEIGHT);
+        music = Gdx.audio.newMusic(Gdx.files.internal("iz_Zvyozdnyh_vojn_-_Imperskij_marsh.mp3"));
+        music.play();
     }
 
     @Override
@@ -85,13 +90,6 @@ public class MenuScreen extends Base2DScreen implements ActionListener {
         buttonExit.draw(batch);
         buttonPlay.draw(batch);
         batch.end();
-    }
-
-    @Override
-    public void dispose() {
-        bg.dispose();
-        atlas.dispose();
-        super.dispose();
     }
 
     @Override
@@ -128,5 +126,13 @@ public class MenuScreen extends Base2DScreen implements ActionListener {
         } else {
             throw new RuntimeException("Unknown src");
         }
+    }
+
+    @Override
+    public void dispose() {
+        bg.dispose();
+        atlas.dispose();
+        music.dispose();
+        super.dispose();
     }
 }

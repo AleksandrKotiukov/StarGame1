@@ -100,4 +100,6 @@ public class Sprite extends Rect {
     public boolean isDestroyed() {
         return isDestroyed;
     }
+
+    public void dispose(){}
 }

@@ -2,6 +2,7 @@ package ru.geekbrains.stargame.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -39,6 +40,8 @@ public class GameScreen extends Base2DScreen {
 
     private EnemiesEmitter enemiesEmitter;
 
+    private Music music;
+
     public GameScreen(Game game) {
         super(game);
     }
@@ -59,6 +62,8 @@ public class GameScreen extends Base2DScreen {
         mainShip = new MainShip(atlas, bulletPool);
         enemyPool = new EnemyPool(bulletPool, worldBounds);
         this.enemiesEmitter = new EnemiesEmitter(worldBounds, enemyPool, atlas);
+        music = Gdx.audio.newMusic(Gdx.files.internal("iz_Zvyozdnyh_vojn_-_Imperskij_marsh.mp3"));
+        music.play();
     }
 
     @Override
@@ -114,15 +119,6 @@ public class GameScreen extends Base2DScreen {
     }
 
     @Override
-    public void dispose() {
-        bg.dispose();
-        atlas.dispose();
-        bulletPool.dispose();
-        enemyPool.dispose();
-        super.dispose();
-    }
-
-    @Override
     public boolean keyDown(int keycode) {
         mainShip.keyDown(keycode);
         return false;
@@ -142,5 +138,16 @@ public class GameScreen extends Base2DScreen {
     @Override
     public void touchUp(Vector2 touch, int pointer) {
         mainShip.touchUp(touch, pointer);
+    }
+
+    @Override
+    public void dispose() {
+        bg.dispose();
+        atlas.dispose();
+        bulletPool.dispose();
+        enemyPool.dispose();
+        music.dispose();
+        mainShip.dispose();
+        super.dispose();
     }
 }

@@ -68,6 +68,12 @@ public abstract class SpritesPool<T extends Sprite> {
     }
 
     public void dispose() {
+        for (int i = 0; i < freeObjects.size(); i++) {
+            activeObjects.get(i).dispose();
+        }
+        for (int i = 0; i < freeObjects.size(); i++) {
+            activeObjects.get(i).dispose();
+        }
         activeObjects.clear();
         freeObjects.clear();
     }
